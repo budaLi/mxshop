@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import sys
+import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -32,8 +33,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#更改系统user
 AUTH_USER_MODEL = 'users.UserProfile'
-# Application definition
+#自定义用户认证 由于jwt接口默认采用用户名密码登录 如果用手机号登录的话就会失败 所以在这里要自定义用户验证
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+
+)
+#设置jwt有效时间
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),    #也可以设置seconds=20
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',                       #JWT跟前端保持一致，比如“token”这里设置成JWT
+}
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -61,6 +72,9 @@ INSTALLED_APPS = [
 
     #跨域配置
     'corsheaders',
+
+    #使用drf进行登录和权限验证
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +171,24 @@ STATIC_URL = '/static/'
 #在这里和url同时设置可以使xadmin后台图片正常显示
 MEDIA_URL='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+#drf认证
+#缺点  保存在数据库中 如果是一个分布式的系统就会非常麻烦
+#token永久有效 没有过期时间
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.BasicAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.TokenAuthentication'
+#     )
+# }
+
+#使用jwt json web token方式
+#这两个的区别在于第三个不同
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    )
+}
