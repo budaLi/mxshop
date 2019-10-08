@@ -9,7 +9,7 @@ from django.db.models import Q
 
 User = get_user_model()
 
-class CustomBackend(ModelBackend):
+class MyCustomBackend(ModelBackend):
     """
     自定义用户验证
     """

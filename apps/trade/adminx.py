@@ -2,7 +2,7 @@
 __author__ = 'bobby'
 
 import xadmin
-from .models import ShoppingCart, OrderInfo, OrderGoods
+from trade.models import ShoppingCart, OrderInfo, OrderGoods
 
 class ShoppingCartAdmin(object):
     list_display = ["user", "goods", "nums", ]

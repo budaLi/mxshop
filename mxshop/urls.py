@@ -16,6 +16,7 @@ Including another URLconf
 # from django.contrib import admin
 from django.conf.urls import url,include
 import xadmin
+from django.contrib import admin
 #这两个设置是设置图片显示的
 from mxshop.settings import MEDIA_ROOT
 from django.views.static import serve
@@ -45,6 +46,8 @@ route.register(r'goods',GoodsListViewSet,base_name='goods')
 route.register(r'categorys',CategoryListViewSet,base_name='category')
 
 urlpatterns = [
+
+    # url(r'admin/', admin.site.urls),
     url(r'xadmin/',xadmin.site.urls),
 
     #drf登录需要的配置

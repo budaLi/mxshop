@@ -7,13 +7,13 @@ from rest_framework.filters import SearchFilter,OrderingFilter
 #使用django-filters进行过滤
 from django_filters.rest_framework import DjangoFilterBackend
 
-from .goodsfilters import GoodsFilter
+from goods.goodsfilters import GoodsFilter
 # from rest_framework import status
 #在这里表示当前路径下的
-from .models import Goods,GoodsCategory
+from goods.models import Goods,GoodsCategory
 
 #导入序列化的对象
-from .serializers import GoodsSerializer,CategorySerializer
+from goods.serializers import GoodsSerializer,CategorySerializer
 
 # Create your views here.
 

@@ -12,7 +12,7 @@
 @time: 2017/7/4 17:04
 """
 import xadmin
-from .models import UserFav, UserLeavingMessage, UserAddress
+from user_operation.models import UserFav, UserLeavingMessage, UserAddress
 
 
 class UserFavAdmin(object):

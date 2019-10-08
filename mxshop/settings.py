@@ -36,10 +36,11 @@ ALLOWED_HOSTS = []
 #更改系统user
 AUTH_USER_MODEL = 'users.UserProfile'
 #自定义用户认证 由于jwt接口默认采用用户名密码登录 如果用手机号登录的话就会失败 所以在这里要自定义用户验证
+#注释掉此处xadmin才能正常登录 但是前面接口无法使用 暂时未解决
 AUTHENTICATION_BACKENDS = (
-    'users.views.CustomBackend',
-
+    'users.views.MyCustomBackend',
 )
+
 #设置jwt有效时间
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),    #也可以设置seconds=20
@@ -48,6 +49,11 @@ JWT_AUTH = {
 
 INSTALLED_APPS = [
     'django.contrib.auth',
+
+    #解决 Model class django.contrib.admin.models.LogEntry doesn't declare an explicit app_label and isn't in an application in INSTALLED_APPS.
+    'django.contrib.admin',
+
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -62,8 +68,11 @@ INSTALLED_APPS = [
     #这两个是使用xadmin时要加的 同时要在github上搜索相关依赖包安装
         # https://www.cnblogs.com/xingfuggz/p/10142388.html
     #常见报错解决 https://blog.csdn.net/GoAheadNeverTurnBack/article/details/81410328
-    'crispy_forms',
     'xadmin',
+    'crispy_forms',
+    'reversion',
+
+    # 'xadmin',
 
     #使用drf一定要配置
     'rest_framework',

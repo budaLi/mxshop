@@ -13,7 +13,7 @@
 """
 import xadmin
 from xadmin import views
-from .models import VerifyCode
+from users.models import VerifyCode
 
 
 class BaseSetting(object):
