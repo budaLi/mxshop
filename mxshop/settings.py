@@ -54,12 +54,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'DjangoUeditor',
     'extra_apps',
-    'users.apps.UsersConfig',
-    'user_operation.apps.UserOperationConfig',
-    'goods.apps.GoodsConfig',
-    'trade.apps.TradeConfig',
+    'users',
+    'user_operation',
+    'goods',
+    'trade',
 
     #这两个是使用xadmin时要加的 同时要在github上搜索相关依赖包安装
+        # https://www.cnblogs.com/xingfuggz/p/10142388.html
     #常见报错解决 https://blog.csdn.net/GoAheadNeverTurnBack/article/details/81410328
     'crispy_forms',
     'xadmin',
@@ -122,7 +123,7 @@ DATABASES = {
         'USER':'root',
         'PASSWORD':'root',
         'HOST':'127.0.0.1',
-        'OPTIONS':{'init_command':'SET storage_engine=INNODB;'}
+        "OPTIONS":{"init_command":"SET default_storage_engine=INNODB;"}
     }
 }
 

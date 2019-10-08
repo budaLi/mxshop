@@ -18,5 +18,5 @@ class SendSms:
 
 if __name__=='__main__':
     sendsms=SendSms('65e7be01db4174b372508587a2e2c933')
-    res=sendsms.send('1234','15735655836')
+    res=sendsms.send('1234','18286186646')
     print(res)

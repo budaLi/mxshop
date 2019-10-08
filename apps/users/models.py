@@ -19,7 +19,7 @@ class UserProfile(AbstractUser):
     birthday=models.DateField(null=True,blank=True,verbose_name='出生年月')
     gender=models.CharField(max_length=6,choices=(('male',u'男'),('female',u'女')),default='female',verbose_name='性别')
 
-    #邮箱和手机号设置为空和name设置为空理由一致
+    #邮箱设置为空和name设置为空理由一致
     mobile=models.CharField(max_length=11,verbose_name='手机号')
     email = models.CharField(max_length=100,null=True,blank=True,verbose_name='邮箱')
 
@@ -33,7 +33,7 @@ class UserProfile(AbstractUser):
 
     #python3中已经不存在unicode编码的概念
     def __str__(self):
-        return self.username
+        return self.name
 
 
 class VerifyCode(models.Model):

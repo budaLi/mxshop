@@ -9,7 +9,8 @@ from django.db import models
 from django.db.models.fields import FieldDoesNotExist
 # from django.db.models.sql.query import LOOKUP_SEP, QUERY_TERMS
 from django.db.models.sql.query import LOOKUP_SEP
-from django.db.models.sql.constants import QUERY_TERMS
+# from django.db.models.sql.constants import QUERY_TERMS
+from django.db.models.sql.query import LOOKUP_SEP, Query
 from django.template import loader
 from django.utils import six
 from django.utils.encoding import smart_str
@@ -46,7 +47,7 @@ class FilterPlugin(BaseAdminPlugin):
 
         # Last term in lookup is a query term (__exact, __startswith etc)
         # This term can be ignored.
-        if len(parts) > 1 and parts[-1] in QUERY_TERMS:
+        if len(parts) > 1 and parts[-1] in Query:
             parts.pop()
 
         # Special case -- foo__id__exact and foo__id queries are implied

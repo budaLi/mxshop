@@ -56,6 +56,7 @@ urlpatterns = [
     # url(r'goods/$',goods_list,name='good-list'),
     url(r'^',include(route.urls)),
 
+
     #这里一定要注意 $符号一定要删除
     url(r'docs',include_docs_urls(title='慕课生鲜')),
 

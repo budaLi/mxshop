@@ -13,6 +13,8 @@ class GoodsCategory(models.Model):
         (2,'二级类目'),
         (3,'三级类目')
     )
+
+    #help_text可以用于生成文档
     name = models.CharField(default='',max_length=30,verbose_name='类别名',help_text='类别名')
     code = models.CharField(default='',max_length=30,verbose_name='类别编码',help_text='类别编码')
     desc = models.TextField(default='',verbose_name='类别描述',help_text='类别描述')
@@ -37,7 +39,7 @@ class GoodsCategory(models.Model):
 
 class GoodsCategoryBrand(models.Model):
     """
-    品牌名
+    品牌名 商家
     """
     category = models.ForeignKey(GoodsCategory,related_name='brands',null=True,blank=True,verbose_name='商品类目',on_delete=models.CASCADE)
     name = models.CharField(default='',max_length=30,verbose_name='品牌名',help_text='品牌名')
@@ -59,6 +61,8 @@ class Goods(models.Model):
     """
     #第一级商品类别 没有父目录 所以要设置为空
     category = models.ForeignKey(GoodsCategory, null=True,blank=True,verbose_name="商品类目",on_delete=models.CASCADE)
+
+    #自动生成的id用于代码设计时作为主键 good_sn用于商家取货时
     goods_sn = models.CharField(max_length=50, default="", verbose_name="商品唯一货号")
     name = models.CharField(max_length=100, verbose_name="商品名")
     click_num = models.IntegerField(default=0, verbose_name="点击数")

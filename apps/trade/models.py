@@ -1,9 +1,11 @@
 from django.db import models
-#通过这种方式将重写的user类加载
-from django.contrib.auth import get_user_model
+
 from datetime import datetime
 # Create your models here.
 from goods.models import Goods
+
+#通过这种方式将重写的user类加载
+from django.contrib.auth import get_user_model
 User=get_user_model()
 
 class ShoppingCart(models.Model):
